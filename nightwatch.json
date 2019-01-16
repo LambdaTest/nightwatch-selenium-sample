@@ -1,0 +1,68 @@
+{
+  "src_folders" : ["tests"],
+  "output_folder" : "reports",
+  "page_objects_path" : "",
+  "globals_path" : "",
+
+  "selenium" : {
+    "start_process" : false,
+    "server_path" : "",
+    "log_path" : "",
+    "host" : "127.0.0.1",
+    "port" : 4444,
+    "cli_args" : {
+      "webdriver.chrome.driver" : "",
+      "webdriver.ie.driver" : "",
+      "webdriver.firefox.profile" : ""
+    }
+  },
+
+  "test_workers" : {"enabled" : true, "workers" : "auto"},
+
+  "test_settings" : {
+    "default" : {
+      "launch_url" : "https://lambdatest.com",
+      "selenium_port"  : 80,
+      "selenium_host"  : "beta-hub.lambdatest.com",
+      "silent": false,
+      "screenshots" : {
+        "enabled" : true,
+        "path" : ""
+      },
+      "username" : "Your Username",
+      "access_key" : "Your AccessKey",
+
+      "skip_testcases_on_fail": false,
+
+      "desiredCapabilities": {
+        "build":"nightwatch",
+        "visual":true,
+        "video":true,
+        "console":true,
+        "network":true
+      }
+    },
+
+    "chrome": {
+      "desiredCapabilities": {
+        "platform": "Windows 8",
+        "browserName": "chrome",
+        "version": "71.0"
+      }
+    },
+    "safari" : {
+      "desiredCapabilities": {
+        "platform": "macos 10.13",
+        "browserName": "safari",
+        "version": "11.0"
+      }
+},
+    "edge" : {
+      "desiredCapabilities": {
+        "platform": "Windows 10",
+        "browserName": "MicrosoftEdge",
+        "version": "17.0"
+      }
+    }
+  }
+}
