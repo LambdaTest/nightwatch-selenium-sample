@@ -4,9 +4,9 @@
   "description": "NightWatch examples for LambdaTest",
   "main": "",
   "scripts": {
-    "test": "./node_modules/.bin/nightwatch -e chrome,firefox,edge tests"
+    "test": "./node_modules/.bin/nightwatch -e chrome,firefox,edge,safari tests"
   },
   "devDependencies": {
-    "nightwatch": "0.9.21"
+    "nightwatch": "^1.0.18"
   }
 }

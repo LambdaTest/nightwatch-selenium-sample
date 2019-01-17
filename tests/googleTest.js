@@ -7,7 +7,7 @@ module.exports = {
     'Google': function(client) {
         client
             .url('https://www.google.com/ncr')
-            .waitForElementVisible('body', 1000)
+            .waitForElementVisible('body', 10000)
             .setValue('input[type=text]', 'LambdaTest\n')
             .pause(1000)
             .assert.title('LambdaTest - Google Search')

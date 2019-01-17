@@ -8,8 +8,8 @@
     "start_process" : false,
     "server_path" : "",
     "log_path" : "",
-    "host" : "127.0.0.1",
-    "port" : 4444,
+    "host" : "beta-hub.lambdatest.com",
+    "port" : 80,
     "cli_args" : {
       "webdriver.chrome.driver" : "",
       "webdriver.ie.driver" : "",
@@ -29,13 +29,13 @@
         "enabled" : true,
         "path" : ""
       },
-      "username" : "Your Username",
-      "access_key" : "Your AccessKey",
+      "username" : <YOUR LT_USERNAME>,
+      "access_key" : <YOUR LT_ACCESS_KEY>,
 
       "skip_testcases_on_fail": false,
 
       "desiredCapabilities": {
-        "build":"nightwatch",
+        "build":"Nightwatch-Selenium-Sample",
         "visual":true,
         "video":true,
         "console":true,
@@ -56,6 +56,13 @@
         "browserName": "safari",
         "version": "11.0"
       }
+},
+"firefox" : {
+  "desiredCapabilities": {
+    "platform": "win10",
+    "browserName": "firefox",
+    "version": "60"
+  }
 },
     "edge" : {
       "desiredCapabilities": {
