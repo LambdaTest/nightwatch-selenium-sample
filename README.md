@@ -26,8 +26,13 @@
 ### Running Tests
 
 * Tests in Parallel:
+**Linux/Mac
     ```
     $ ./node_modules/.bin/nightwatch -e chrome,edge tests
+    ```
+**Windows
+  ```
+    $ node_modules\.bin\nightwatch -e chrome,edge tests
     ```
 
 You will see the test result in the [lambdatest Dashboard](https://automation.lambdatest.com)
