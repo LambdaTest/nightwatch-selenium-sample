@@ -26,7 +26,8 @@
 ### Running Tests
 
 * Tests in Parallel:
-   ** Linux/Mac
+
+    ** Linux/Mac
     ```
     $ ./node_modules/.bin/nightwatch -e chrome,edge,firefox tests
     ```
