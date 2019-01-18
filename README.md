@@ -14,8 +14,8 @@
 2. lambdatest Credentials
     * In the terminal export your lambdatest Credentials as environmental variables:
     ```
-    $ export LAMBDATEST_USERNAME=<your lambdatest username>
-    $ export LAMBDATEST_ACCESS_KEY=<your lambdatest access_key>
+    $ export LT_USERNAME=<your lambdatest username>
+    $ export LT_ACCESS_KEY=<your lambdatest access_key>
     ```
 3. Project Dependencies
     * Install Node modules
@@ -26,13 +26,13 @@
 ### Running Tests
 
 * Tests in Parallel:
-   **Linux/Mac
+   ** Linux/Mac
     ```
-    $ ./node_modules/.bin/nightwatch -e chrome,edge tests
+    $ ./node_modules/.bin/nightwatch -e chrome,edge,firefox tests
     ```
-   **Windows
+   ** Windows
     ```
-    $ node_modules\.bin\nightwatch -e chrome,edge tests
+    $ node_modules\.bin\nightwatch -e chrome,edge,firefox tests
     ```
 
 You will see the test result in the [lambdatest Dashboard](https://automation.lambdatest.com)
