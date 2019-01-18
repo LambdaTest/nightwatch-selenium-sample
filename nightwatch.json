@@ -29,8 +29,8 @@
         "enabled" : true,
         "path" : ""
       },
-      "username" : <YOUR LT_USERNAME>,
-      "access_key" : <YOUR LT_ACCESS_KEY>,
+      "username" : "",
+      "access_key" : "",
 
       "skip_testcases_on_fail": false,
 
