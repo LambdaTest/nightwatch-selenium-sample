@@ -8,7 +8,7 @@
     "start_process" : false,
     "server_path" : "",
     "log_path" : "",
-    "host" : "beta-hub.lambdatest.com",
+    "host" : "hub.lambdatest.com",
     "port" : 80,
     "cli_args" : {
       "webdriver.chrome.driver" : "",
@@ -21,9 +21,12 @@
 
   "test_settings" : {
     "default" : {
+      "request_timeout_options": {
+        "timeout": 1000000
+      },
       "launch_url" : "https://lambdatest.com",
       "selenium_port"  : 80,
-      "selenium_host"  : "beta-hub.lambdatest.com",
+      "selenium_host"  : "hub.lambdatest.com",
       "silent": false,
       "screenshots" : {
         "enabled" : true,
