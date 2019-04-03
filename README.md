@@ -28,9 +28,11 @@
 * Tests in Parallel:
 
     ** Linux/Mac
+    
     ```
     $ ./node_modules/.bin/nightwatch -e chrome,edge,firefox tests
     ```
+    
    ** Windows
     ```
     $ node_modules\.bin\nightwatch -e chrome,edge,firefox tests
