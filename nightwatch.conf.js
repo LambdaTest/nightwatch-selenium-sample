@@ -1,5 +1,5 @@
 module.exports = (function(settings) {
-  console.log(settings["test_settings"]["default"]["username"])
+  console.log(settings["test_settings"]["default"]["username"]);
 
   if (process.env.LT_USERNAME) {
     settings["test_settings"]["default"]["username"] = process.env.LT_USERNAME;
@@ -15,5 +15,6 @@ module.exports = (function(settings) {
   if (process.env.SELENIUM_PORT) {
     settings.selenium.host = process.env.SELENIUM_PORT;
   }
+  console.log(settings);
   return settings;
 })(require('./nightwatch.json'));
