@@ -15,7 +15,7 @@ node {
       git 'https://github.com/LambdaTest/nightwatch-selenium-sample.git'
 
       //Download Tunnel Binary
-      sh "wget https://s3.amazonaws.com/lambda-tunnel/LT_Linux.zip"
+      sh "wget http://downloads.lambdatest.com/tunnel/linux/64bit/LT_Linux.zip"
 
       //Required if unzip is not installed
       sh 'sudo apt-get install --no-act unzip'
