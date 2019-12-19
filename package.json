@@ -8,5 +8,10 @@
   },
   "devDependencies": {
     "nightwatch": "^1.0.18"
+  },
+  "dependencies": {
+    "@lambdatest/node-rest-client": "^1.0.0",
+    "audit": "0.0.6",
+    "fix": "0.0.6"
   }
 }
