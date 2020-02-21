@@ -1,0 +1,39 @@
+format_version: 3
+pipelines:
+  nightwatch-gocd-sample:
+    group: My-Pipelines
+    label_template: ${COUNT}
+    lock_behavior: none
+    display_order: -1
+    materials:
+      git:
+        git: https://github.com/LambdaTest/nightwatch-selenium-sample
+        shallow_clone: false
+        auto_update: true
+        branch: master
+    stages:
+    - acceptence-testing:
+        fetch_materials: true
+        keep_artifacts: false
+        clean_workspace: false
+        approval:
+          type: success
+          allow_only_on_success: false
+        jobs:
+          chrome:
+            timeout: 0
+            environment_variables:
+              LT_USERNAME: {LambdaTest username here}
+              LT_ACCESS_KEY: {LambdaTest accessKey here}
+            tasks:
+            - exec:
+                arguments:
+                - install
+                command: npm
+                run_if: passed
+            - exec:
+                arguments:
+                - -e
+                - chrome
+                command: ./node_modules/.bin/nightwatch
+                run_if: passed
