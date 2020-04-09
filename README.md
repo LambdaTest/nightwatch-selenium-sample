@@ -184,10 +184,12 @@ To run a parallel test, you need to set the value of `test_workers` to true. Don
 
 We will use the same selenium capaibilities to run the parallel test, but with a change in the executing commmand. To run a parallel test, we'll need to run the following commands: 
 
-** Linux/Mac
+* Linux/Mac
+
 ```$ ./node_modules/.bin/nightwatch -e chrome,edge,firefox tests```
  
-** Windows
+* Windows
+
 ```$ node_modules\.bin\nightwatch -e chrome,edge,firefox tests```
 
 The above command will run the test on chrome, edge, and firefox browsers in parallel at the specified configurations. After running the following command, you will get the given output in the command terminal: 
