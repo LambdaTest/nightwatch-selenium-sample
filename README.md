@@ -1,44 +1,125 @@
-# Running NightWatch and Selenium On LambdaTest
-##### [NightWatch Documentation](http://nightwatchjs.org/)
-![LAMBDATEST Logo](http://labs.lambdatest.com/images/fills-copy.svg)
+# Nightwatch Tutorial
+
+![LAMBDATEST Logo](https://www.lambdatest.com/blog/wp-content/uploads/2020/04/Lambdatest-logo-e1586434547512.png) ![Nightwatch Logo](https://www.lambdatest.com/blog/wp-content/uploads/2020/04/nightwatchh.png)
+
+This tutorial will help you to automate your Nightwatch tests on LambdaTest online Selenium cloud grid. 
+
+## Prerequisites for Nightwatch tutorial for Selenium and JavaScript
 
 
-### Environment Setup
+* **Node.js and 
+Package Manager (npm)** : Install Node.js from [here](https://nodejs.org/en/#home-downloadhead) Or Install Node.js with [Homebrew](http://brew.sh/)
+```
+$ brew install node
+```
 
-1. Global Dependencies
-    * Install [Node.js](https://nodejs.org/en/)
-    * Or Install Node.js with [Homebrew](http://brew.sh/)
+* **LambdaTest Credentials**
+   * Set LambdaTest username and access key in environment variables. It can be obtained from [LambdaTest Automation Dashboard](https://automation.lambdatest.com/)    
+    example:
+   - For linux/mac
     ```
-    $ brew install node
-    ```
-2. lambdatest Credentials
-    * In the terminal export your lambdatest Credentials as environmental variables:
-    ```
-    $ export LT_USERNAME=<your lambdatest username>
-    $ export LT_ACCESS_KEY=<your lambdatest access_key>
-    ```
-3. Project Dependencies
-    * Install Node modules
-    ```
-    $ npm install
-    ```
+    export LT_USERNAME="YOUR_USERNAME"
+    export LT_ACCESS_KEY="YOUR ACCESS KEY"
 
-### Running Tests
+    ```
+    - For Windows
+    ```
+    set LT_USERNAME="YOUR_USERNAME"
+    set LT_ACCESS_KEY="YOUR ACCESS KEY"
 
-* Tests in Parallel:
+    ```
+    
+## Setup for Running the Nightwatch test
+   * Clone the github repo in your local browser using ```git clone https://github.com/LambdaTest/nightwatch-selenium-sample.git``` or download it directly from [here](https://github.com/LambdaTest/nightwatch-selenium-sample/archive/master.zip)
+   * Navigate to the folder in which you have cloned or downloaded the repo and install dependencies by using `npm install`
+   * In the same navigated folder, download the nightwatch dependency files by using the command `npm install nightwatch`. 
+   
+## Executing Protractor JavaScript Test
+
+### Test Scenario 
+
+The following sample code will run a test on LambdaTest Selenium Grid which will go to www.google.com and then type "LambdaTest" in the google search box. Then it will compare the title of the first search result with "LambdaTest - Google Search". If the result matches the described string, it will assert the value as pass else the test will be asserted as fail. 
+
+To execute the test, you'll need to navigate to the folder where <code>nightwatch-selenium-sample-master</code> is present. Here, you'll need to execute the following command using the command line 
 
     ** Linux/Mac
     
     ```
-    $ ./node_modules/.bin/nightwatch -e chrome,edge tests
+    $ ./node_modules/.bin/nightwatch -e chrome tests
     ```
     
    ** Windows
     ```
-    $ node_modules\.bin\nightwatch -e chrome,edge tests
+    $ node_modules\.bin\nightwatch -e chrome tests
     ```
 
+Once you execute the above command, it'll run the following code on Chrome browser in your LambdaTest account. 
+
+```
+var https = require("https");
+var lambdaRestClient = require("@lambdatest/node-rest-client");
+var lambdaCredentials = {
+  username: process.env.LT_USERNAME,
+  accessKey: process.env.LT_ACCESS_KEY
+};
+var lambdaAutomationClient = lambdaRestClient.AutomationClient(
+  lambdaCredentials
+);
+module.exports = {
+  "@tags": ["test"],
+  Google: function(client) {
+    client
+      .url("https://www.google.com/ncr")
+      .waitForElementVisible("body", 10000)
+      .setValue("input[type=text]", "LambdaTest\n")
+      .pause(1000)
+      .assert.title("LambdaTest - Google Search")
+      .end();
+  },
+  after: function(browser) {
+    console.log("Closing down...");
+  },
+  afterEach: function(client, done) {
+    if (
+      process.env.LT_USERNAME &&
+      process.env.LT_ACCESS_KEY &&
+      client.capabilities &&
+      client.capabilities["webdriver.remote.sessionid"]
+    ) {
+      
+      lambdaAutomationClient.updateSessionById(
+        client.capabilities["webdriver.remote.sessionid"],
+        { status_ind: client.currentTest.results.failed ? "failed" : "passed" },
+        function(error, session) {
+          console.log(error)
+          if (!error) {
+            client.pause(10000)
+            done();
+          }
+        }
+      );
+    } else {
+      client.pause(10000)
+      done();
+    }
+  }
+};
+
+```
+
+Once you execute this command you'll get the following output in the command terminal:
+
+![Output](https://www.lambdatest.com/blog/wp-content/uploads/2020/04/nightwatch-output.png)
+
 You will see the test result in the [Lambdatest Dashboard](https://automation.lambdatest.com)
+
+The output in automation dashboard will look like this: 
+
+![Automation Dashboard output](https://www.lambdatest.com/blog/wp-content/uploads/2020/04/automation-output-nightwatch.png)
+
+### LambdaTest Selenium Capabilities 
+
+
 
 ###  Routing traffic through your local machine
 - Set tunnel value to `True` in test capabilities
