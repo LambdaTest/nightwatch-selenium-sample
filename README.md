@@ -15,7 +15,7 @@ $ brew install node
 Download [Selenium JavaScript bindings](http://www.seleniumhq.org/download/) from the official Selenium website.
 Once you download the JavaScript bindings, extract the ZIP file which you’ve downloaded. After extracting the file, you need to add Selenium Java bindings which is a JAR file and all the dependent libraries to your classpath.
 
-* **Installing Selenium Dependencies For Node.js
+* **Installing Selenium Dependencies For Node.js**
 
 Next step is to install Selenium dependencies for Node.js using npm. Here’s the command to run:
 ```npm i selenium-webdriver```
