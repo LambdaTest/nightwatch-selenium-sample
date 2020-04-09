@@ -17,6 +17,7 @@ $ brew install node
    * Set LambdaTest username and access key in environment variables. It can be obtained from [LambdaTest Automation Dashboard](https://automation.lambdatest.com/)    
     example:
    - For linux/mac
+  
     ```
     export LT_USERNAME="YOUR_USERNAME"
     export LT_ACCESS_KEY="YOUR ACCESS KEY"
@@ -40,15 +41,16 @@ $ brew install node
 
 The following sample code will run a test on LambdaTest Selenium Grid which will go to www.google.com and then type "LambdaTest" in the google search box. Then it will compare the title of the first search result with "LambdaTest - Google Search". If the result matches the described string, it will assert the value as pass else the test will be asserted as fail. 
 
-To execute the test, you'll need to navigate to the folder where <code>nightwatch-selenium-sample-master</code> is present. Here, you'll need to execute the following command using the command line 
+To execute the test, you'll need to navigate to the folder where <code>nightwatch-selenium-sample-master</code> is present. Here, you'll need to execute the following command using the command line: 
 
-    ** Linux/Mac
+   ** Linux/Mac 
     
-    ```
+    ``` 
     $ ./node_modules/.bin/nightwatch -e chrome tests
     ```
     
    ** Windows
+   
     ```
     $ node_modules\.bin\nightwatch -e chrome tests
     ```
@@ -117,7 +119,53 @@ The output in automation dashboard will look like this:
 
 ![Automation Dashboard output](https://www.lambdatest.com/blog/wp-content/uploads/2020/04/automation-output-nightwatch.png)
 
-### LambdaTest Selenium Capabilities 
+### LambdaTest Selenium Desired Capabilities 
+
+Since, now we have a first script ready. Let us specify the selenium capabilities to run the script on LambdaTest cloud-based Selenium Grid. LambdaTest provides a [capability generator](https://www.lambdatest.com/capabilities-generator/) to the capabilities in all the major languages. All you need to do is to select the OS, Resolution, Browser, Version and the code will be generated. You can just copy it and paste it in your code. In the above example, we have used the following Selenium capabilities which are mentioned in "nightwatch.json" file inside the repo. 
+
+```
+ "desiredCapabilities": {
+        "build": "Nightwatch-Selenium-Sample",
+        "visual": true,
+        "video": true,
+        "console": true,
+        "network": true
+      }
+    },
+    "chrome": {
+      "desiredCapabilities": {
+        "platform": "Windows 8",
+        "browserName": "chrome",
+        "version": "71.0"
+      }
+    },
+    "safari": {
+      "desiredCapabilities": {
+        "platform": "macos 10.13",
+        "browserName": "safari",
+        "version": "11.0"
+      }
+    },
+    "firefox": {
+      "desiredCapabilities": {
+        "platform": "win10",
+        "browserName": "firefox",
+        "version": "60"
+      }
+    },
+    "edge": {
+      "desiredCapabilities": {
+        "platform": "Windows 10",
+        "browserName": "MicrosoftEdge",
+        "version": "17.0"
+      }
+    }
+```
+
+Since this is a common desired capaibilities used in parallel testing as well, hence we have different capabilities named as chrome, safari, firefox, and edge. However, when running the test above, we have run it only on chrome so the test ran on Windows 8, Chrome 71.0. But you can change the configuration using our LambdaTest Selenium Capability Generator by selecting the combination of your choice and copying the capabilities generated and pasting in your code. 
+
+> Note: Don't forget to change your location as Javascript in the Selenium capability generator. 
+
 
 
 
