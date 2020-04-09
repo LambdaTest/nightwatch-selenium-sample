@@ -45,15 +45,15 @@ To execute the test, you'll need to navigate to the folder where <code>nightwatc
 
    ** Linux/Mac 
     
-    ``` 
+   
     $ ./node_modules/.bin/nightwatch -e chrome tests
-    ```
+   
     
    ** Windows
    
-    ```
+   
     $ node_modules\.bin\nightwatch -e chrome tests
-    ```
+   
 
 Once you execute the above command, it'll run the following code on Chrome browser in your LambdaTest account. 
 
