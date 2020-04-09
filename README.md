@@ -176,9 +176,9 @@ Since this is a common desired capaibilities used in parallel testing as well, h
 
 ## Running Parallel tests using Nightwatch JS 
 
-Ww will use the same test script over different configuration to demonstrate parallel testing. Parallel testing with Nightwatch will help you to run multiple test cases simultaneously.
+We will use the same test script over different configuration to demonstrate parallel testing. Parallel testing with Nightwatch will help you to run multiple test cases simultaneously.
 
-Parallel Test- Here is JavaScript file to run Nightwatch Testing on a parallel environment i.e. different operating system (Windows 10 and Mac OS High Sierra) and different browsers (Chrome, Mozilla Firefox,Edge, and Safari).
+* **Parallel Test-** Here is JavaScript file to run Nightwatch Testing on a parallel environment i.e. different operating system (Windows 10 and Mac OS High Sierra) and different browsers (Chrome, Mozilla Firefox,Edge, and Safari).
 
 To run a parallel test, you need to set the value of `test_workers` to true. Don't worry, we have already set the value to true, so you won't need to change anything. All you need to do is to run a new command in the base folder directory. 
 
