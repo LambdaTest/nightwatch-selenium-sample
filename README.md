@@ -48,21 +48,7 @@ Next step is to install Selenium dependencies for Node.js using npm. Here’s th
 
 The following sample code will run a test on LambdaTest Selenium Grid which will go to www.google.com and then type "LambdaTest" in the google search box. Then it will compare the title of the first search result with "LambdaTest - Google Search". If the result matches the described string, it will assert the value as pass else the test will be asserted as fail. 
 
-To execute the test, you'll need to navigate to the folder where <code>nightwatch-selenium-sample-master</code> is present. Here, you'll need to execute the following command using the command line: 
-
-   * Linux/Mac 
-    
-   
-    $ ./node_modules/.bin/nightwatch -e chrome tests
-   
-    
-   * Windows
-   
-   
-    $ node_modules\.bin\nightwatch -e chrome tests
-   
-
-Once you execute the above command, it'll run the following code on Chrome browser in your LambdaTest account. 
+The following test will run the following code on Chrome browser in your LambdaTest account. 
 
 ```
 var https = require("https");
@@ -115,6 +101,21 @@ module.exports = {
 };
 
 ```
+### Running the test for Nightwatch JS 
+
+To execute the test, you'll need to navigate to the folder where <code>nightwatch-selenium-sample-master</code> is present. Here, you'll need to execute the following command using the command line: 
+
+   * Linux/Mac 
+    
+   
+    $ ./node_modules/.bin/nightwatch -e chrome tests
+   
+    
+   * Windows
+   
+   
+    $ node_modules\.bin\nightwatch -e chrome tests
+   
 
 Once you execute this command you'll get the following output in the command terminal:
 
@@ -173,8 +174,30 @@ Since this is a common desired capaibilities used in parallel testing as well, h
 
 > Note: Don't forget to change your location as Javascript in the Selenium capability generator. 
 
+## Running Parallel tests using Nightwatch JS 
 
+Ww will use the same test script over different configuration to demonstrate parallel testing. Parallel testing with Nightwatch will help you to run multiple test cases simultaneously.
 
+Parallel Test- Here is JavaScript file to run Nightwatch Testing on a parallel environment i.e. different operating system (Windows 10 and Mac OS High Sierra) and different browsers (Chrome, Mozilla Firefox,Edge, and Safari).
+
+To run a parallel test, you need to set the value of `test_workers` to true. Don't worry, we have already set the value to true, so you won't need to change anything. All you need to do is to run a new command in the base folder directory. 
+
+We will use the same selenium capaibilities to run the parallel test, but with a change in the executing commmand. To run a parallel test, we'll need to run the following commands: 
+
+** Linux/Mac
+$ ./node_modules/.bin/nightwatch -e chrome,edge,firefox tests
+ 
+** Windows
+$ node_modules\.bin\nightwatch -e chrome,edge,firefox tests
+
+The above command will run the test on chrome, edge, and firefox browsers in parallel at the specified configurations. After running the following command, you will get the given output in the command terminal: 
+![Output command terminal](https://www.lambdatest.com/blog/wp-content/uploads/2020/04/output-paralllel-nightwatch.png)
+
+It will look like the following on the LambdaTest Automation dashboard
+
+![Lambdatest automation dashboard](https://www.lambdatest.com/blog/wp-content/uploads/2020/04/automation-output-parallel-nightwatch.png)
+
+Know how many parallel sessions are needed by using our [Concurrency Test Calculator](https://www.lambdatest.com/concurrency-calculator?ref=github)
 
 ###  Performing an automation test on your local hosted application| Local Testing 
 
