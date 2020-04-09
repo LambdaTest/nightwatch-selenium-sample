@@ -12,6 +12,13 @@ Package Manager (npm)** : Install Node.js from [here](https://nodejs.org/en/#hom
 ```
 $ brew install node
 ```
+Download [Selenium JavaScript bindings](http://www.seleniumhq.org/download/) from the official Selenium website.
+Once you download the JavaScript bindings, extract the ZIP file which you’ve downloaded. After extracting the file, you need to add Selenium Java bindings which is a JAR file and all the dependent libraries to your classpath.
+
+* **Installing Selenium Dependencies For Node.js
+
+Next step is to install Selenium dependencies for Node.js using npm. Here’s the command to run:
+```npm i selenium-webdriver```
 
 * **LambdaTest Credentials**
    * Set LambdaTest username and access key in environment variables. It can be obtained from [LambdaTest Automation Dashboard](https://automation.lambdatest.com/)    
@@ -35,7 +42,7 @@ $ brew install node
    * Navigate to the folder in which you have cloned or downloaded the repo and install dependencies by using `npm install`
    * In the same navigated folder, download the nightwatch dependency files by using the command `npm install nightwatch`. 
    
-## Executing Protractor JavaScript Test
+## Executing Nightwatch JavaScript Test
 
 ### Test Scenario 
 
@@ -43,13 +50,13 @@ The following sample code will run a test on LambdaTest Selenium Grid which will
 
 To execute the test, you'll need to navigate to the folder where <code>nightwatch-selenium-sample-master</code> is present. Here, you'll need to execute the following command using the command line: 
 
-   ** Linux/Mac 
+   * Linux/Mac 
     
    
     $ ./node_modules/.bin/nightwatch -e chrome tests
    
     
-   ** Windows
+   * Windows
    
    
     $ node_modules\.bin\nightwatch -e chrome tests
@@ -169,8 +176,15 @@ Since this is a common desired capaibilities used in parallel testing as well, h
 
 
 
-###  Routing traffic through your local machine
+###  Performing an automation test on your local hosted application| Local Testing 
+
+To perform an automation test on a file or application hosted on your local environment or behind firewall, follow the given steps:
+
 - Set tunnel value to `True` in test capabilities
+So for example, if I have to run the above script for a locally hosted web-application then my capabilities class would be :
+
+```"tunnel" : true;```
+
 > OS specific instructions to download and setup tunnel binary can be found at the following links.
 >    - [Windows](https://www.lambdatest.com/support/docs/display/TD/Local+Testing+For+Windows)
 >    - [Mac](https://www.lambdatest.com/support/docs/display/TD/Local+Testing+For+MacOS)
@@ -187,3 +201,4 @@ Since this is a common desired capaibilities used in parallel testing as well, h
 ### Resources
 
 ##### [SeleniumHQ Documentation](http://www.seleniumhq.org/docs/)
+##### [Nightwatch Documentation](https://www.lambdatest.com/support/docs/nightwatch-with-selenium-running-nightwatch-automation-scripts-on-lambdatest-selenium-grid/)
