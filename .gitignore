@@ -1,0 +1,5 @@
+//exclude below files/dir
+
+node_modules/*
+reports/*
+lambda_api.log
