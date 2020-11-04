@@ -61,7 +61,7 @@
       "desiredCapabilities": {
         "platform": "Windows 10",
         "browserName": "firefox",
-        "version": "70"
+        "version": "latest"
       }
     },
     "edge": {
