@@ -186,7 +186,7 @@ We will use the same selenium capaibilities to run the parallel test, but with a
 
 * Linux/Mac
 
-```$ ./node_modules/.bin/nightwatch -e chrome,edge,firefox tests```
+```$ ./node_modules/.bin/nightwatch -e chrome,edge tests```
  
 * Windows
 
