@@ -7,7 +7,7 @@
     "test": "./node_modules/.bin/nightwatch -e chrome,firefox,edge,safari tests"
   },
   "devDependencies": {
-    "nightwatch": "^1.0.18"
+    "nightwatch": "^1.6.3"
   },
   "dependencies": {
     "@lambdatest/node-rest-client": "^1.0.0",
