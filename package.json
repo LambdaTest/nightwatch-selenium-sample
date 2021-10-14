@@ -1,6 +1,6 @@
 {
-  "name": "JS-Nightwatch.js",
-  "version": "0.0.0",
+  "name": "nightwatch-js",
+  "version": "0.0.1",
   "description": "NightWatch examples for LambdaTest",
   "main": "",
   "scripts": {

@@ -44,30 +44,37 @@
     },
     "chrome": {
       "desiredCapabilities": {
-        "platform": "Windows 8",
+        "platformName": "Windows 10",
         "browserName": "chrome",
-        "version": "latest"
+        "browserVersion": "latest"
       }
     },
     "safari": {
       "desiredCapabilities": {
-        "platform": "macos 10.13",
+        "platformName": "macos 10.15",
         "browserName": "safari",
-        "version": "11.0"
+        "browserVersion": "latest"
+      }
+    },
+    "firefox": {
+      "desiredCapabilities": {
+        "platformName": "Windows 10",
+        "browserName": "firefox",
+        "browserVersion": "latest"
       }
     },
     "edge": {
       "desiredCapabilities": {
-        "platform": "Windows 10",
+        "platformName": "Windows 10",
         "browserName": "MicrosoftEdge",
-        "version": "latest"
+        "browserVersion": "latest"
       }
     },
     "ie": {
       "desiredCapabilities": {
-        "platform": "Windows 10",
+        "platformName": "Windows 10",
         "browserName": "internet explorer",
-        "version": "11"
+        "browserVersion": "11"
       }
     }
   }
