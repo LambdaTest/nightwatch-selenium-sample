@@ -56,13 +56,6 @@
         "version": "11.0"
       }
     },
-    "firefox": {
-      "desiredCapabilities": {
-        "platform": "Windows 10",
-        "browserName": "firefox",
-        "version": "latest"
-      }
-    },
     "edge": {
       "desiredCapabilities": {
         "platform": "Windows 10",

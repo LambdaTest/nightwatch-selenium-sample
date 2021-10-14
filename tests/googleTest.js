@@ -12,7 +12,7 @@ module.exports = {
   Google: function(client) {
     client
       .url("https://www.google.com/ncr")
-      .waitForElementPresent("body", 10000)
+      .waitForElementPresent("body", 1000)
       .setValue("input[type=text]", "LambdaTest\n")
       .pause(1000)
       .assert.title("LambdaTest - Google Search")
@@ -35,13 +35,13 @@ module.exports = {
         function(error, session) {
           console.log(error)
           if (!error) {
-            client.pause(10000)
+            client.pause(1000)
             done();
           }
         }
       );
     } else {
-      client.pause(10000)
+      client.pause(1000)
       done();
     }
   }
