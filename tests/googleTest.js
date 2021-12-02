@@ -13,7 +13,7 @@ module.exports = {
     client
       .url("https://www.google.com/ncr")
       .waitForElementPresent("body", 1000)
-      .setValue("input[type=text]", "LambdaTest\n")
+      .setValue("input[type=search]", "LambdaTest\n")
       .pause(1000)
       .assert.title("LambdaTest - Google Search")
       .end();
