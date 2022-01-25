@@ -1,54 +1,77 @@
 # Nightwatch Tutorial
 
 ![LAMBDATEST Logo](https://www.lambdatest.com/blog/wp-content/uploads/2020/04/Lambdatest-logo-e1586434547512.png) ![Nightwatch Logo](https://www.lambdatest.com/blog/wp-content/uploads/2020/04/nightwatchh.png)
+This tutorial will help you to automate your Nightwatch tests on LambdaTest online Selenium cloud grid.
 
-This tutorial will help you to automate your Nightwatch tests on LambdaTest online Selenium cloud grid. 
+## Prerequisites
 
-## Prerequisites for Nightwatch tutorial for Selenium and JavaScript
+1. Install npm.
 
-
-* **Node.js and 
-Package Manager (npm)** : Install Node.js from [here](https://nodejs.org/en/#home-downloadhead) Or Install Node.js with [Homebrew](http://brew.sh/)
 ```
-$ brew install node
+sudo apt install npm
 ```
-Download [Selenium JavaScript bindings](http://www.seleniumhq.org/download/) from the official Selenium website.
-Once you download the JavaScript bindings, extract the ZIP file which you’ve downloaded. After extracting the file, you need to add Selenium Java bindings which is a JAR file and all the dependent libraries to your classpath.
 
-* **Installing Selenium Dependencies For Node.js**
+2. Install NodeJS.
 
-Next step is to install Selenium dependencies for Node.js using npm. Here’s the command to run:
-```npm i selenium-webdriver```
+```
+sudo apt install nodejs
+```
 
-* **LambdaTest Credentials**
-   * Set LambdaTest username and access key in environment variables. It can be obtained from [LambdaTest Automation Dashboard](https://automation.lambdatest.com/)    
-    example:
-   - For linux/mac
-  
-    ```
-    export LT_USERNAME="YOUR_USERNAME"
-    export LT_ACCESS_KEY="YOUR ACCESS KEY"
+## Steps to Run your First Test
 
-    ```
-    - For Windows
-    ```
-    set LT_USERNAME="YOUR_USERNAME"
-    set LT_ACCESS_KEY="YOUR ACCESS KEY"
+Step 1. Clone the Nightwatch Selenium Repository.
 
-    ```
-    
-## Setup for Running the Nightwatch test
-   * Clone the github repo in your local browser using ```git clone https://github.com/LambdaTest/nightwatch-selenium-sample.git``` or download it directly from [here](https://github.com/LambdaTest/nightwatch-selenium-sample/archive/master.zip)
-   * Navigate to the folder in which you have cloned or downloaded the repo and install dependencies by using `npm install`
-   * In the same navigated folder, download the nightwatch dependency files by using the command `npm install nightwatch`. 
-   
-## Executing Nightwatch JavaScript Test
+```
+git clone https://github.com/LambdaTest/nightwatch-selenium-sample.git
+```
 
-### Test Scenario 
+Step 2. Inside mightwatch-selenium-sample, export the Lambda-test Credentials. You can get these from your automation dashboard.
 
-The following sample code will run a test on LambdaTest Selenium Grid which will go to www.google.com and then type "LambdaTest" in the google search box. Then it will compare the title of the first search result with "LambdaTest - Google Search". If the result matches the described string, it will assert the value as pass else the test will be asserted as fail. 
+<p align="center">
+   <b>For Linux/macOS:</b>
 
-The following test will run the following code on Chrome browser in your LambdaTest account. 
+```
+export LT_USERNAME="YOUR_USERNAME"
+export LT_ACCESS_KEY="YOUR ACCESS KEY"
+```
+
+<p align="center">
+   <b>For Windows:</b>
+
+```
+set LT_USERNAME="YOUR_USERNAME"
+set LT_ACCESS_KEY="YOUR ACCESS KEY"
+```
+
+Step 3. Inside mightwatch-selenium-sample folder install necessary packages.
+
+```
+cd mocha-selenium-sample
+npm i
+```
+
+Step 4. To run your First Test.
+
+```
+npm run single
+```
+
+## See the Results
+
+You can check your test results on the [Automation Dashboard](https://automation.lambdatest.com/build).
+![Automation Testing Logs](https://www.lambdatest.com/blog/wp-content/uploads/2020/04/automation-output-nightwatch.png)
+
+## Executing Nightwatch test Parallely.
+
+1. Will use the same test script over different configration to demonstarte parallel testing. Parallel testing with Mocha will help you to run multiple test cases simultaneously.
+
+```
+npm run parallel
+```
+
+## Understanding googleTest.js
+
+1. Importing necessary packages, and cofiguring Lambdatest credentials.
 
 ```
 var https = require("https");
@@ -60,15 +83,20 @@ var lambdaCredentials = {
 var lambdaAutomationClient = lambdaRestClient.AutomationClient(
   lambdaCredentials
 );
+```
+
+2. Next, we write our test to open google.com and search Lambdatest on it. Then we compare if the heading of th search matchs the expected output.
+
+```
 module.exports = {
   "@tags": ["test"],
   Google: function(client) {
     client
       .url("https://www.google.com/ncr")
-      .waitForElementVisible("body", 10000)
-      .setValue("input[type=text]", "LambdaTest\n")
+      .waitForElementPresent("body", 1000)
+      .setValue("input[name=q]", "LambdaTest\n") // Write Lambdatest in the search input box.
       .pause(1000)
-      .assert.title("LambdaTest - Google Search")
+      .assert.title("LambdaTest - Google Search") // Set title.
       .end();
   },
   after: function(browser) {
@@ -81,55 +109,30 @@ module.exports = {
       client.capabilities &&
       client.capabilities["webdriver.remote.sessionid"]
     ) {
-      
+
       lambdaAutomationClient.updateSessionById(
         client.capabilities["webdriver.remote.sessionid"],
         { status_ind: client.currentTest.results.failed ? "failed" : "passed" },
         function(error, session) {
           console.log(error)
           if (!error) {
-            client.pause(10000)
+            client.pause(1000)
             done();
           }
         }
       );
     } else {
-      client.pause(10000)
+      console.log("Test Run Successfully!");
+      client.pause(1000)
       done();
     }
   }
 };
-
 ```
-### Running the test for Nightwatch JS 
 
-To execute the test, you'll need to navigate to the folder where <code>nightwatch-selenium-sample-master</code> is present. Here, you'll need to execute the following command using the command line: 
+### LambdaTest Selenium Desired Capabilities
 
-   * Linux/Mac 
-    
-   
-    $ ./node_modules/.bin/nightwatch -e chrome tests
-   
-    
-   * Windows
-   
-   
-    $ node_modules\.bin\nightwatch -e chrome tests
-   
-
-Once you execute this command you'll get the following output in the command terminal:
-
-![Output](https://www.lambdatest.com/blog/wp-content/uploads/2020/04/nightwatch-output.png)
-
-You will see the test result in the [Lambdatest Dashboard](https://automation.lambdatest.com)
-
-The output in automation dashboard will look like this: 
-
-![Automation Dashboard output](https://www.lambdatest.com/blog/wp-content/uploads/2020/04/automation-output-nightwatch.png)
-
-### LambdaTest Selenium Desired Capabilities 
-
-Since, now we have a first script ready. Let us specify the selenium capabilities to run the script on LambdaTest cloud-based Selenium Grid. LambdaTest provides a [capability generator](https://www.lambdatest.com/capabilities-generator/) to the capabilities in all the major languages. All you need to do is to select the OS, Resolution, Browser, Version and the code will be generated. You can just copy it and paste it in your code. In the above example, we have used the following Selenium capabilities which are mentioned in "nightwatch.json" file inside the repo. 
+Since, now we have a first script ready. Let us specify the selenium capabilities to run the script on LambdaTest cloud-based Selenium Grid. LambdaTest provides a [capability generator](https://www.lambdatest.com/capabilities-generator/) to the capabilities in all the major languages. All you need to do is to select the OS, Resolution, Browser, Version and the code will be generated. You can just copy it and paste it in your code. In the above example, we have used the following Selenium capabilities which are mentioned in "nightwatch.json" file inside the repo.
 
 ```
  "desiredCapabilities": {
@@ -170,53 +173,29 @@ Since, now we have a first script ready. Let us specify the selenium capabilitie
     }
 ```
 
-Since this is a common desired capaibilities used in parallel testing as well, hence we have different capabilities named as chrome, safari, firefox, and edge. However, when running the test above, we have run it only on chrome so the test ran on Windows 8, Chrome 71.0. But you can change the configuration using our LambdaTest Selenium Capability Generator by selecting the combination of your choice and copying the capabilities generated and pasting in your code. 
+> Note: Don't forget to change your location as Javascript in the Selenium capability generator.
 
-> Note: Don't forget to change your location as Javascript in the Selenium capability generator. 
-
-## Running Parallel tests using Nightwatch JS 
-
-We will use the same test script over different configuration to demonstrate parallel testing. Parallel testing with Nightwatch will help you to run multiple test cases simultaneously.
-
-* **Parallel Test-** Here is JavaScript file to run Nightwatch Testing on a parallel environment i.e. different operating system (Windows 10 and Mac OS High Sierra) and different browsers (Chrome, Mozilla Firefox,Edge, and Safari).
-
-To run a parallel test, you need to set the value of `test_workers` to true. Don't worry, we have already set the value to true, so you won't need to change anything. All you need to do is to run a new command in the base folder directory. 
-
-We will use the same selenium capaibilities to run the parallel test, but with a change in the executing commmand. To run a parallel test, we'll need to run the following commands: 
-
-* Linux/Mac
-
-```$ ./node_modules/.bin/nightwatch -e chrome,edge tests```
- 
-* Windows
-
-```$ node_modules\.bin\nightwatch -e chrome,edge tests```
-
-The above command will run the test on chrome, edge, and firefox browsers in parallel at the specified configurations. After running the following command, you will get the given output in the command terminal: 
 ![Output command terminal](https://www.lambdatest.com/blog/wp-content/uploads/2020/04/output-paralllel-nightwatch.png)
 
-It will look like the following on the LambdaTest Automation dashboard
-
-![Lambdatest automation dashboard](https://www.lambdatest.com/blog/wp-content/uploads/2020/04/automation-output-parallel-nightwatch.png)
-
-Know how many parallel sessions are needed by using our [Concurrency Test Calculator](https://www.lambdatest.com/concurrency-calculator?ref=github)
-
-###  Performing an automation test on your local hosted application| Local Testing 
+### Performing an automation test on your local hosted application| Local Testing
 
 To perform an automation test on a file or application hosted on your local environment or behind firewall, follow the given steps:
 
 - Set tunnel value to `True` in test capabilities
-So for example, if I have to run the above script for a locally hosted web-application then my capabilities class would be :
+  So for example, if I have to run the above script for a locally hosted web-application then my capabilities class would be :
 
-```"tunnel" : true;```
+`"tunnel" : true;`
 
 > OS specific instructions to download and setup tunnel binary can be found at the following links.
->    - [Windows](https://www.lambdatest.com/support/docs/display/TD/Local+Testing+For+Windows)
->    - [Mac](https://www.lambdatest.com/support/docs/display/TD/Local+Testing+For+MacOS)
->    - [Linux](https://www.lambdatest.com/support/docs/display/TD/Local+Testing+For+Linux)
+>
+> - [Windows](https://www.lambdatest.com/support/docs/display/TD/Local+Testing+For+Windows)
+> - [Mac](https://www.lambdatest.com/support/docs/display/TD/Local+Testing+For+MacOS)
+> - [Linux](https://www.lambdatest.com/support/docs/display/TD/Local+Testing+For+Linux)
 
 ### Important Note:
+
 ---
+
 - Some Safari & IE browsers, doesn't support automatic resolution of the URL string "localhost". Therefore if you test on URLs like "http://localhost/" or "http://localhost:8080" etc, you would get an error in these browsers. A possible solution is to use "localhost.lambdatest.com" or replace the string "localhost" with machine IP address. For example if you wanted to test "http://localhost/dashboard" or, and your machine IP is 192.168.2.6 you can instead test on "http://192.168.2.6/dashboard" or "http://localhost.lambdatest.com/dashboard".
 
 ## About LambdaTest
@@ -226,4 +205,5 @@ So for example, if I have to run the above script for a locally hosted web-appli
 ### Resources
 
 ##### [SeleniumHQ Documentation](http://www.seleniumhq.org/docs/)
+
 ##### [Nightwatch Documentation](https://www.lambdatest.com/support/docs/nightwatch-with-selenium-running-nightwatch-automation-scripts-on-lambdatest-selenium-grid/)
