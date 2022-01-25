@@ -85,7 +85,7 @@ var lambdaAutomationClient = lambdaRestClient.AutomationClient(
 );
 ```
 
-2. Next, we write our test to open google.com and search Lambdatest on it. Then we compare if the heading of th search matchs the expected output.
+2. Next, we write our test to open google.com and search Lambdatest on it. Then we compare if the heading of the search matchs the expected output.
 
 ```
 module.exports = {
