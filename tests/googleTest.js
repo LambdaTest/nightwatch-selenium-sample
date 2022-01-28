@@ -13,10 +13,10 @@ module.exports = {
     client
       .url("https://www.google.com/ncr")
       .waitForElementPresent("body", 1000)
-      .setValue("input[type=search]", "LambdaTest\n")
+      .setValue("input[name=q]", "LambdaTest\n")
       .pause(1000)
       .assert.title("LambdaTest - Google Search")
-      .end();
+      .end();  
   },
   after: function(browser) {
     console.log("Closing down...");
@@ -41,6 +41,7 @@ module.exports = {
         }
       );
     } else {
+      console.log("Test Run Successfully!");
       client.pause(1000)
       done();
     }
