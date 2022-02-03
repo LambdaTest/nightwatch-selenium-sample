@@ -1,6 +1,6 @@
 # Nightwatch Tutorial
 
-![LAMBDATEST Logo](https://www.lambdatest.com/blog/wp-content/uploads/2020/04/Lambdatest-logo-e1586434547512.png) ![Nightwatch Logo](https://www.lambdatest.com/blog/wp-content/uploads/2020/04/nightwatchh.png)
+![LAMBDATEST Logo](https://opengraph.githubassets.com/2a8bf38fd8e394747c9444f24da888eed4ec72e7f2694a7ca14f35b02af55d3a/LambdaTest/nightwatch-selenium-sample)
 This tutorial will help you to automate your Nightwatch tests on LambdaTest online Selenium cloud grid.
 
 ## Prerequisites
@@ -43,10 +43,10 @@ set LT_USERNAME="YOUR_USERNAME"
 set LT_ACCESS_KEY="YOUR ACCESS KEY"
 ```
 
-Step 3. Inside mightwatch-selenium-sample folder install necessary packages.
+Step 3. Inside nightwatch-selenium-sample folder install necessary packages.
 
 ```
-cd mocha-selenium-sample
+cd nightwatch-selenium-sample
 npm i
 ```
 
