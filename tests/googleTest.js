@@ -9,14 +9,15 @@ var lambdaAutomationClient = lambdaRestClient.AutomationClient(
 );
 module.exports = {
   "@tags": ["test"],
-  Google: function(client) {
+  TodoTest: function(client) {    
     client
-      .url("https://www.google.com/ncr")
+      .url("https://lambdatest.github.io/sample-todo-app/")
       .waitForElementPresent("body", 1000)
-      .setValue("input[name=q]", "LambdaTest\n")
+      .setValue("input[id=sampletodotext]", "Complete LambdaTest tutorial.")
+      .click("input[id=addbutton]")
       .pause(1000)
-      .assert.title("LambdaTest - Google Search")
       .end();  
+ 
   },
   after: function(browser) {
     console.log("Closing down...");

@@ -85,19 +85,20 @@ var lambdaAutomationClient = lambdaRestClient.AutomationClient(
 );
 ```
 
-2. Next, we write our test to open google.com and search Lambdatest on it. Then we compare if the heading of the search matchs the expected output.
+2. Next, we write our test to open Todo app, and add a task in the list.
 
 ```
 module.exports = {
   "@tags": ["test"],
-  Google: function(client) {
+  TodoTest: function(client) {    
     client
-      .url("https://www.google.com/ncr")
+      .url("https://lambdatest.github.io/sample-todo-app/")
       .waitForElementPresent("body", 1000)
-      .setValue("input[name=q]", "LambdaTest\n") // Write Lambdatest in the search input box.
+      .setValue("input[id=sampletodotext]", "Complete LambdaTest tutorial.")
+      .click("input[id=addbutton]")
       .pause(1000)
-      .assert.title("LambdaTest - Google Search") // Set title.
-      .end();
+      .end();  
+ 
   },
   after: function(browser) {
     console.log("Closing down...");
@@ -109,7 +110,7 @@ module.exports = {
       client.capabilities &&
       client.capabilities["webdriver.remote.sessionid"]
     ) {
-
+      
       lambdaAutomationClient.updateSessionById(
         client.capabilities["webdriver.remote.sessionid"],
         { status_ind: client.currentTest.results.failed ? "failed" : "passed" },
