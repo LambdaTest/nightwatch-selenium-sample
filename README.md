@@ -1,6 +1,6 @@
 # Nightwatch Tutorial
 
-![LAMBDATEST Logo](https://www.lambdatest.com/blog/wp-content/uploads/2020/04/Lambdatest-logo-e1586434547512.png) ![Nightwatch Logo](https://www.lambdatest.com/blog/wp-content/uploads/2020/04/nightwatchh.png)
+![LAMBDATEST Logo](https://opengraph.githubassets.com/2a8bf38fd8e394747c9444f24da888eed4ec72e7f2694a7ca14f35b02af55d3a/LambdaTest/nightwatch-selenium-sample)
 This tutorial will help you to automate your Nightwatch tests on LambdaTest online Selenium cloud grid.
 
 ## Prerequisites
@@ -43,10 +43,10 @@ set LT_USERNAME="YOUR_USERNAME"
 set LT_ACCESS_KEY="YOUR ACCESS KEY"
 ```
 
-Step 3. Inside mightwatch-selenium-sample folder install necessary packages.
+Step 3. Inside nightwatch-selenium-sample folder install necessary packages.
 
 ```
-cd mocha-selenium-sample
+cd nightwatch-selenium-sample
 npm i
 ```
 
@@ -85,19 +85,20 @@ var lambdaAutomationClient = lambdaRestClient.AutomationClient(
 );
 ```
 
-2. Next, we write our test to open google.com and search Lambdatest on it. Then we compare if the heading of the search matchs the expected output.
+2. Next, we write our test to open Todo app, and add a task in the list.
 
 ```
 module.exports = {
   "@tags": ["test"],
-  Google: function(client) {
+  TodoTest: function(client) {    
     client
-      .url("https://www.google.com/ncr")
+      .url("https://lambdatest.github.io/sample-todo-app/")
       .waitForElementPresent("body", 1000)
-      .setValue("input[name=q]", "LambdaTest\n") // Write Lambdatest in the search input box.
+      .setValue("input[id=sampletodotext]", "Complete LambdaTest tutorial.")
+      .click("input[id=addbutton]")
       .pause(1000)
-      .assert.title("LambdaTest - Google Search") // Set title.
-      .end();
+      .end();  
+ 
   },
   after: function(browser) {
     console.log("Closing down...");
@@ -109,7 +110,7 @@ module.exports = {
       client.capabilities &&
       client.capabilities["webdriver.remote.sessionid"]
     ) {
-
+      
       lambdaAutomationClient.updateSessionById(
         client.capabilities["webdriver.remote.sessionid"],
         { status_ind: client.currentTest.results.failed ? "failed" : "passed" },
