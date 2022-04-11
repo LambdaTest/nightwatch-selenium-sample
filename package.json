@@ -4,11 +4,10 @@
   "description": "NightWatch examples for LambdaTest",
   "main": "",
   "scripts": {
-    "single": "./node_modules/.bin/nightwatch -e chrome tests",
-    "parallel": "./node_modules/.bin/nightwatch -e chrome,edge,safari tests"
+    "single": "./node_modules/.bin/nightwatch -e lambdatest.chrome tests",
+    "parallel": "./node_modules/.bin/nightwatch -e lambdatest.chrome,lambdatest.edge,lambdatest.firefox tests"
   },
   "dependencies": {
-    "@lambdatest/node-rest-client": "^1.0.0",
     "nightwatch": "^2.1.0"
   }
 }
