@@ -9,6 +9,6 @@
   },
   "dependencies": {
     "@lambdatest/node-rest-client": "^1.0.0",
-    "nightwatch": "^2.0.0-alpha.3"
+    "nightwatch": "^2.1.0"
   }
 }

@@ -3,3 +3,5 @@
 node_modules/*
 reports/*
 lambda_api.log
+tests_output/*
+*-lock.json

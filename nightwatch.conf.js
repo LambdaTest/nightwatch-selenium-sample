@@ -1,20 +1,63 @@
-module.exports = (function(settings) {
-  console.log(settings["test_settings"]["default"]["username"]);
+const capabilities = {
+  'LT:Options' : {
+    "user" : '${LT_USERNAME}',
+    "accessKey" : '${LT_ACCESS_KEY}',
+    "build" : "your build name",
+    "name" : "your test name",
+    "platformName" : "Windows 10",
+    "selenium_version" : "4.1.2",
+    "seCdp" : "true"
+  }
+}
 
-  if (process.env.LT_USERNAME) {
-    settings["test_settings"]["default"]["username"] = process.env.LT_USERNAME;
-  }
+const lambdatest = {
+  webdriver: {
+      start_process: false
+    },
 
-  if (process.env.LT_ACCESS_KEY) {
-    settings["test_settings"]["default"]["access_key"] = process.env.LT_ACCESS_KEY;
-  }
+    selenium: {
+      host: 'hub.lambdatest.com',
+      port: 443
+    },
 
-  if (process.env.SELENIUM_HOST) {
-    settings.selenium.host = process.env.SELENIUM_HOST;
+    desiredCapabilities: {
+       browserName: 'chrome',
+      ...capabilities
+    }
+}
+
+module.exports = {
+  src_folders: [],
+
+  test_settings: {
+    default: {
+      launch_url: 'https://nightwatchjs.org'
+    },
+
+    lambdatest:  {
+        ...lambdatest
+    },
+
+    "lambdatest.chrome": {
+      ...lambdatest,
+      desiredCapabilities:{
+          browserName: 'chrome',
+          ...capabilities
+      }
+    },
+    "lambdatest.firefox": {
+      ...lambdatest,
+      desiredCapabilities:{
+          browserName: 'firefox',
+          ...capabilities
+      }
+    },
+    "lambdatest.edge": {
+      ...lambdatest,
+      desiredCapabilities:{
+          browserName: 'Edge',
+          ...capabilities
+      }
+    },
   }
-  if (process.env.SELENIUM_PORT) {
-    settings.selenium.host = process.env.SELENIUM_PORT;
-  }
-  console.log(settings);
-  return settings;
-})(require('./nightwatch.json'));
+}
