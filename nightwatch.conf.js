@@ -1,3 +1,5 @@
+
+
 const capabilities = {
   'LT:Options' : {
     "user" : '${LT_USERNAME}',
@@ -59,5 +61,37 @@ module.exports = {
           ...capabilities
       }
     },
+  },
+
+  beforeEach(browser, done)  {
+    // performing an async operation
+    console.log('before each');
+    setTimeout(function() {
+      // finished async duties
+      done();
+    }, 100);
+  },
+
+  afterEach(browser, done) {
+    // performing an async operation
+    console.log('after each');
+    setTimeout(function() {
+      // finished async duties
+      done();
+    }, 200);
+  },
+
+   // Called right after the command .navigateTo() is finished
+   async onBrowserNavigate(browser) {
+    console.log(browser.currentTest);
+    browser.execute('lambda-name='+browser.currentTest.name());
+    return Promise.resolve();
+  },
+
+  // Called right before the command .quite() is finished
+  async onBrowserQuit(browser) {
+    console.log('on quite');
+    return Promise.resolve();
   }
-}
+
+};
