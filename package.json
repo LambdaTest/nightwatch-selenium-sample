@@ -8,10 +8,10 @@
     "parallel": "cross-env CONFIG_FILE=parallel ./node_modules/.bin/nightwatch -e chrome,edge,safari tests"
   },
   "dependencies": {
-    "@lambdatest/node-rest-client": "^1.0.5",
-    "nightwatch": "^3.12.2"
+    "@lambdatest/node-rest-client": "^2.0.1",
+    "nightwatch": "^3.12.3"
   },
   "devDependencies": {
-    "cross-env": "^7.0.3"
+    "cross-env": "^10.1.0"
   }
 }
