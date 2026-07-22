@@ -11,7 +11,7 @@ module.exports = {
   "@tags": ["test"],
   TodoTest: function(client) {    
     client
-      .url("https://lambdatest.github.io/sample-todo-app/")
+      .url("https://www.testmuai.com/selenium-playground/todo-app/")
       .waitForElementPresent("body", 1000)
       .setValue("input[id=sampletodotext]", "Complete LambdaTest tutorial.")
       .click("input[id=addbutton]")
